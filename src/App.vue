@@ -60,10 +60,8 @@
                 chunkedSubArray.forEach((subChunk) => {
                     let streamName = subChunk.find((sub) => sub.streamName).streamName;
                     let streamDate = subChunk.find((sub) => sub.subDate).subDate;
-                    let streamSubs = subChunk.filter((sub) => sub.streamName || sub.subDate).length;
-                    let outOfSteamSubs = subChunk.filter((sub) => !(sub.streamName || sub.subDate)).length;
-                    totalSubs += subChunk.length;
-                    streamArray.push(new Stream(streamDate, streamName, streamSubs, outOfSteamSubs, totalSubs));
+                    let inStreamSubs = subChunk.filter((sub) => sub.streamName || sub.subDate).length;
+                    streamArray.push(new Stream(streamDate, streamName, inStreamSubs, subChunk.length - inStreamSubs, totalSubs += subChunk.length));
                 });
 
                 this.addSubItem(subArray);
