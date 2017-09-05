@@ -11,13 +11,4 @@ export default class Subscription {
         this.streamName = streamName;
         this.subDate = subDate;
     }
-
-    toJSON() {
-        return {
-            subNumber: this.subNumber,
-            subName: this.subName,
-            streamName: this.streamName,
-            subDate: this.subDate
-        }
-    }
 }
