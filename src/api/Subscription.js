@@ -3,13 +3,13 @@ export default class Subscription {
     subNumber;
     subName;
     streamName;
-    streamDate;
+    subDate;
 
-    constructor(subNumber, subName, streamName, streamDate) {
+    constructor(subNumber, subName, streamName, subDate) {
         this.subNumber = subNumber;
         this.subName = subName;
         this.streamName = streamName;
-        this.streamDate = streamDate;
+        this.subDate = subDate;
     }
 
     toJSON() {
@@ -17,7 +17,7 @@ export default class Subscription {
             subNumber: this.subNumber,
             subName: this.subName,
             streamName: this.streamName,
-            streamDate: this.streamDate
+            subDate: this.subDate
         }
     }
 }

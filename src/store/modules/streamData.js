@@ -1,4 +1,5 @@
 import mutationTypes from '../mutationTypes'
+import Stream from '../../api/Stream';
 
 const state = {
     streams: []
@@ -14,8 +15,11 @@ const actions = {
 };
 
 const mutations = {
-    [mutationTypes.subData.ADD_SUB_ITEM](state, subObj) {
-        state.streams.push(subObj)
+    [mutationTypes.subData.ADD_SUB_ITEM](state, payload) {
+        if (Array.isArray(payload))
+            state.streams.push(...payload);
+        else if (payload instanceof Stream)
+            state.streams.push(payload);
     }
 };
 

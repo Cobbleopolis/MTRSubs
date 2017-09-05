@@ -1,6 +1,12 @@
 <template>
     <div class="hello">
         <h1>{{ msg }}</h1>
+        <p>Total streams: {{streamCount}}</p>
+        <ul>
+            <li v-for="stream in streams">
+                <code>{{JSON.stringify(stream)}}</code>
+            </li>
+        </ul>
         <p>Total subscribers: {{subscriberCount}}</p>
         <ul>
             <li v-for="sub in subscribers">
@@ -11,8 +17,7 @@
 </template>
 
 <script>
-    import { mapState, mapActions, createNamespacedHelpers } from 'vuex'
-    const subDataMappers = createNamespacedHelpers('subData');
+    import { mapState, mapActions, mapGetters } from 'vuex'
 
     export default {
         name: 'hello',
@@ -22,7 +27,8 @@
             };
         },
         computed: {
-            ...subDataMappers.mapGetters(['subscribers', 'subscriberCount'])
+            ...mapGetters('subData', ['subscribers', 'subscriberCount']),
+            ...mapGetters('streamData', ['streams', 'streamCount'])
         }
     };
 </script>
