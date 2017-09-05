@@ -12,10 +12,10 @@
     import Navbar from './components/Navbar.vue';
     import mutationTypes from './store/mutationTypes';
     import Subscription from './api/Subscription';
+    import Stream from './api/Stream';
     import {mapActions} from 'vuex';
 
     import * as d3 from 'd3';
-    import Stream from './api/Stream';
 
     export default {
         components: {Navbar},
@@ -31,7 +31,7 @@
         beforeMount() {
             const timeParse = d3.timeParse('%m\/%d\/%Y');
             d3.csv('static/subs.csv', (error, csvData) => {
-                if(error) {
+                if (error) {
                     alert(error);
                     return;
                 }
@@ -63,7 +63,7 @@
                     let streamSubs = subChunk.filter((sub) => sub.streamName || sub.subDate).length;
                     let outOfSteamSubs = subChunk.filter((sub) => !(sub.streamName || sub.subDate)).length;
                     totalSubs += subChunk.length;
-                    streamArray.push(new Stream(streamDate, streamName, streamSubs, outOfSteamSubs, totalSubs))
+                    streamArray.push(new Stream(streamDate, streamName, streamSubs, outOfSteamSubs, totalSubs));
                 });
 
                 this.addSubItem(subArray);
@@ -77,31 +77,13 @@
     body
         margin: 0
 
-    #app
-        font-family: 'Avenir', Helvetica, Arial, sans-serif
-        -webkit-font-smoothing: antialiased
-        -moz-osx-font-smoothing: grayscale
-        color: #2c3e50
+        #app
+            font-family: 'Avenir', Helvetica, Arial, sans-serif
+            -webkit-font-smoothing: antialiased
+            -moz-osx-font-smoothing: grayscale
+            color: #2c3e50
 
-    main
-        text-align: center
-        margin-top: 40px
-
-    header
-        margin: 0
-        height: 56px
-        padding: 0 16px 0 24px
-        background-color: #35495E
-        color: #ffffff
-
-    header span
-        display: block
-        position: relative
-        font-size: 20px
-        line-height: 1
-        letter-spacing: .02em
-        font-weight: 400
-        box-sizing: border-box
-        padding-top: 16px
-
+        main
+            text-align: center
+            margin-top: 40px
 </style>
